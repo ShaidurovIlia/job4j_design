@@ -6,14 +6,14 @@ import junit.framework.TestSuite;
 
 public class AppTest extends TestCase {
     public AppTest( String testName ) {
-        super( testName );
+        super(testName);
     }
 
     public static Test suite() {
-        return new TestSuite( AppTest.class );
+        return new TestSuite(AppTest.class);
     }
 
     public void testApp() {
-        assertTrue( true );
+        assertTrue(true);
     }
 }
