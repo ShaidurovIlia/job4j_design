@@ -20,7 +20,7 @@ public class MatrixItTest {
     @Test
     public void whenFirstEmptyThenNext() {
         int[][] in = {
-                { }, {1}
+                {}, {1}
         };
         MatrixIt it = new MatrixIt(in);
         assertThat(it.next(), is(1));
@@ -38,7 +38,7 @@ public class MatrixItTest {
     @Test
     public void whenRowHasDiffSize() {
         int[][] in = {
-                {1},{2,3}
+                {1},{2, 3}
         };
         MatrixIt it = new MatrixIt(in);
         assertThat(it.next(), is(1));
@@ -50,7 +50,7 @@ public class MatrixItTest {
     Test
     public void whenFewEmpty() {
         int [][] in = {
-                {1}, {},{},{}, {2}
+                {1}, {}, {}, {}, {2}
         };
         MatrixIt it = new MatrixIt(in);
         assertThat(it.next(), is(1));
