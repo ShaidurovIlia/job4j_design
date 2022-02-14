@@ -38,7 +38,7 @@ public class MatrixItTest {
     @Test
     public void whenRowHasDiffSize() {
         int[][] in = {
-                {1},{2, 3}
+                {1}, {2, 3}
         };
         MatrixIt it = new MatrixIt(in);
         assertThat(it.next(), is(1));
@@ -46,10 +46,9 @@ public class MatrixItTest {
         assertThat(it.next(), is(3));
     }
 
-    @
-    Test
+    @Test
     public void whenFewEmpty() {
-        int [][] in = {
+        int[][] in = {
                 {1}, {}, {}, {}, {2}
         };
         MatrixIt it = new MatrixIt(in);
