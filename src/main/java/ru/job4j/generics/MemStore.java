@@ -1,6 +1,7 @@
 package ru.job4j.generics;
 
 import java.util.HashMap;
+
 import java.util.Map;
 
 public class MemStore<T extends Base> implements Store<T> {

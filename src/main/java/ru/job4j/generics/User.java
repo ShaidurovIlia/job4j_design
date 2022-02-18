@@ -4,15 +4,15 @@ import java.util.Objects;
 
 public class User extends Base {
 
-    private String id;
+    private final String username;
 
-    public User(String id) {
+    public User(String id, String name) {
         super(id);
+        this.username = name;
     }
 
-    @Override
-    public String getId() {
-        return id;
+    public String getUsername() {
+        return username;
     }
 
     @Override
@@ -24,18 +24,19 @@ public class User extends Base {
             return false;
         }
         User user = (User) o;
-        return Objects.equals(id, user.id);
+        return Objects.equals(username, user.username);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return Objects.hash(username);
     }
 
     @Override
     public String toString() {
         return "User{"
-                + "id='" + id
-                + '\'' + '}';
+                + "username='"
+                + username + '\''
+                + '}';
     }
 }
