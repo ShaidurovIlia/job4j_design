@@ -3,6 +3,7 @@ package ru.job4j.collection;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+
 import ru.job4j.list.List;
 
 import java.util.ConcurrentModificationException;

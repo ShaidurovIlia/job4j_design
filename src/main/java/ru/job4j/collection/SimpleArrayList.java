@@ -7,9 +7,7 @@ import java.util.*;
 public class SimpleArrayList<T> implements List<T> {
 
     private T[] container;
-
     private int size;
-
     private int modCount;
 
     public SimpleArrayList(int capacity) {
