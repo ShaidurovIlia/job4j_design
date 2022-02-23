@@ -21,7 +21,8 @@ public class MemStore<T extends Base> implements Store<T> {
 
     @Override
     public boolean delete(String id) {
-        return !storage.containsKey(id);
+       storage.remove(id);
+       return !storage.containsKey(id);
     }
 
     @Override

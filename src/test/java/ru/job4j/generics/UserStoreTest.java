@@ -27,10 +27,10 @@ public class UserStoreTest {
     @Test
     public void whenAddDuplicateAndFindUsernameIsPetr() {
         UserStore store = new UserStore();
-        store.add(new User("1", "Maxim"));
         store.add(new User("1", "Petr"));
+        store.add(new User("1", "Maxim"));
         User result = store.findById("1");
-        assertThat(result.getUsername(), is("Petr"));
+        assertThat(result.getUsername(), is("Maxim"));
     }
 
     @Test
@@ -56,7 +56,7 @@ public class UserStoreTest {
         UserStore store = new UserStore();
         store.add(new User("1", "Petr"));
         store.delete("1");
-        User result = store.findById("Petr");
+        User result = store.findById("1");
         assertNull(result);
     }
 
