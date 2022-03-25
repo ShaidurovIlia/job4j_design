@@ -40,14 +40,15 @@ public class SimpleLinkedList<E> implements List<E> {
 
             @Override
             public boolean hasNext() {
+                if (expectedModCount != modCount) {
+                    throw new ConcurrentModificationException();
+                }
                 return nextNode != null;
             }
 
             @Override
             public E next() {
-                if (expectedModCount != modCount) {
-                    throw new ConcurrentModificationException();
-                } else if (!hasNext()) {
+                if (!hasNext()) {
                     throw new NoSuchElementException();
                 }
                 E rsl = nextNode.item;
