@@ -8,14 +8,15 @@ public class SimpleQueue<T> {
     private final SimpleStack<T> out = new SimpleStack<>();
 
     public T poll() {
-        T value;
         if (out.isEmpty()) {
+            if (in.isEmpty()) {
+                throw new NoSuchElementException();
+            }
             while (!in.isEmpty()) {
                 out.push(in.pop());
             }
         }
-        value = out.pop();
-        return value;
+      return out.pop();
     }
 
     public void push(T value) {
