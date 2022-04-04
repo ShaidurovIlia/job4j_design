@@ -21,14 +21,11 @@ public class ForwardLinked<T> implements Iterable {
     }
 
     public void addFirst(T value) {
-        Node<T> node = new Node<>(value, null);
         if (head == null) {
-            head = node;
+            head = new Node<>(value, null);
             return;
         }
-        while (node.next != null) {
-            node = node.next;
-        }
+        head = new Node<>(value, head);
     }
 
     public T deleteFirst() {
