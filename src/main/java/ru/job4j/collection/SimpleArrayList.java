@@ -7,8 +7,8 @@ import java.util.*;
 public class SimpleArrayList<T> implements List<T> {
 
     private T[] container;
-    private int size = 0;
-    private int modCount = 0;
+    private int size;
+    private int modCount;
 
     public SimpleArrayList(int capacity) {
         this.container = (T[]) new  Object[capacity];
@@ -17,13 +17,13 @@ public class SimpleArrayList<T> implements List<T> {
     @Override
     public void add(T value) {
         if (size == container.length) {
-            container = Arrays.copyOf(container, container.length * 2);
+            upSize(this.container.length * 2);
         }
         container[size++] = value;
         modCount++;
     }
 
-    public void upSize(int newSize) {
+    private void upSize(int newSize) {
         var array = (T[]) new Object[newSize];
         System.arraycopy(this.container, 0,
                 array, 0, size);
@@ -32,14 +32,14 @@ public class SimpleArrayList<T> implements List<T> {
 
     @Override
     public T set(int index, T newValue) {
-        T rsl = container[index];
+        T rsl = get(index);
         container[index] = newValue;
         return rsl;
     }
 
     @Override
     public T remove(int index) {
-        T rsl = container[index];
+        T rsl = get(index);
         System.arraycopy(container,
                 index + 1,
                 container, index,
