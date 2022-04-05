@@ -7,11 +7,11 @@ import java.util.*;
 public class SimpleArrayList<T> implements List<T> {
 
     private T[] container;
-    private int size;
-    private int modCount;
+    private int size = 0;
+    private int modCount = 0;
 
     public SimpleArrayList(int capacity) {
-        this.container = (T[]) new Object[capacity];
+        this.container = (T[]) new  Object[capacity];
     }
 
     @Override
@@ -23,9 +23,15 @@ public class SimpleArrayList<T> implements List<T> {
         modCount++;
     }
 
+    public void upSize(int newSize) {
+        var array = (T[]) new Object[newSize];
+        System.arraycopy(this.container, 0,
+                array, 0, size);
+        this.container = array;
+    }
+
     @Override
     public T set(int index, T newValue) {
-        Objects.checkIndex(index, size);
         T rsl = container[index];
         container[index] = newValue;
         return rsl;
@@ -33,7 +39,6 @@ public class SimpleArrayList<T> implements List<T> {
 
     @Override
     public T remove(int index) {
-        Objects.checkIndex(index, size);
         T rsl = container[index];
         System.arraycopy(container,
                 index + 1,
