@@ -13,6 +13,16 @@ public class User {
         this.birthday = birthday;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        return this == o;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, children, birthday);
+    }
+
     public static void main(String[] args) {
 
         Calendar calendar = new GregorianCalendar(2000, Calendar.APRIL, 12);
