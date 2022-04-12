@@ -3,14 +3,14 @@ package ru.job4j.collection;
 import java.util.*;
 
 public class User {
+    private int id;
     private String name;
     private int children;
-    private Calendar birthday;
 
-    public User(String name, int children, Calendar birthday) {
+    public User(int id, String name, int children) {
+        this.id = id;
         this.name = name;
         this.children = children;
-        this.birthday = birthday;
     }
 
     @Override
@@ -22,29 +22,29 @@ public class User {
             return false;
         }
         User user = (User) o;
-        return children == user.children
-                && name.equals(user.name)
-                && birthday.equals(user.birthday);
+        return id == user.id && children == user.children && name.equals(user.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, children, birthday);
+        int result = id;
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        return result;
     }
 
     public static void main(String[] args) {
 
-        Calendar calendar = new GregorianCalendar(2000, Calendar.APRIL, 12);
-        User  first = new User("Ivan", 12, calendar);
-        User second = new User("Ivan", 12, calendar);
+        User  first = new User(24, "Ivan", 31);
+        User second = new User(24, "Ivan", 31);
 
         Map<User, Object> userObjectMap = new HashMap<>();
 
         userObjectMap.put(first, new Object());
         userObjectMap.put(second, new Object());
 
-        for (var entry : userObjectMap.entrySet()) {
-            System.out.println(entry);
-        }
+        System.out.println(second.hashCode());
+        System.out.println(first.hashCode());
+        System.out.println(first.equals(second));
     }
 }
