@@ -36,24 +36,24 @@ public class SimpleMap<K, V> implements Map<K, V> {
     }
 
     private void expand() {
-        capacity = capacity * 2;
         MapEntry<K, V>[] copyTable = new MapEntry[capacity * 2];
-        for (MapEntry<K, V> copy : copyTable) {
+        for (MapEntry<K, V> copy : table) {
             if (copy != null) {
-                put(copy.key, copy.value);
-                count--;
+                copyTable[indexFor(hash(copy.key.hashCode()))] = copy;
             }
         }
+        table = copyTable;
     }
 
     @Override
     public V get(K key) {
+        V result = null;
         int index = indexFor(hash(key.hashCode()));
         if (table[index] != null
                 && table[index].key.equals(key)) {
-            return table[index].value;
+            result = (V) table[index].value;
         }
-        return null;
+        return result;
     }
 
     @Override
@@ -72,7 +72,6 @@ public class SimpleMap<K, V> implements Map<K, V> {
     @Override
     public Iterator iterator() {
         return new Iterator<>() {
-            private int cursor;
             private int index;
             private final int expectModCount = modCount;
 
@@ -81,7 +80,13 @@ public class SimpleMap<K, V> implements Map<K, V> {
                 if (expectModCount != modCount) {
                     throw new ConcurrentModificationException();
                 }
-                return cursor < count;
+                for (int i = index; i < table.length; i++) {
+                    if (table[i] != null) {
+                        return true;
+                    }
+                    index++;
+                }
+                return false;
             }
 
             @Override
@@ -89,10 +94,6 @@ public class SimpleMap<K, V> implements Map<K, V> {
                 if (!hasNext()) {
                     throw new NoSuchElementException();
                 }
-                while (table[index] == null) {
-                    index++;
-                }
-                cursor++;
                 return table[index++].key;
             }
         };
