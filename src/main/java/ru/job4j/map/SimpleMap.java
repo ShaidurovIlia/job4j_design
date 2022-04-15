@@ -70,7 +70,7 @@ public class SimpleMap<K, V> implements Map<K, V> {
     }
 
     @Override
-    public Iterator iterator() {
+    public Iterator<K> iterator() {
         return new Iterator<>() {
             private int index;
             private final int expectModCount = modCount;
@@ -80,17 +80,18 @@ public class SimpleMap<K, V> implements Map<K, V> {
                 if (expectModCount != modCount) {
                     throw new ConcurrentModificationException();
                 }
+                boolean result = false;
                 for (int i = index; i < table.length; i++) {
                     if (table[i] != null) {
-                        return true;
+                        result = true;
                     }
                     index++;
                 }
-                return false;
+                return result;
             }
 
             @Override
-            public Object next() {
+            public K next() {
                 if (!hasNext()) {
                     throw new NoSuchElementException();
                 }
