@@ -84,6 +84,7 @@ public class SimpleMap<K, V> implements Map<K, V> {
                 for (int i = index; i < table.length; i++) {
                     if (table[i] != null) {
                         result = true;
+                        break;
                     }
                     index++;
                 }
