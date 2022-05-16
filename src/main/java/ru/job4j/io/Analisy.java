@@ -17,6 +17,7 @@ public class Analisy {
                     } else if (trouble && !"400".equals(lineSplit[0])
                             && !"500".equals(lineSplit[0])) {
                         out.println(lineSplit[1] + ";");
+                        trouble = false;
                     }
                     line = reader.readLine();
                 }
