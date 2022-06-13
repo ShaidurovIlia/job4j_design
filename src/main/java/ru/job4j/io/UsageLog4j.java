@@ -13,7 +13,7 @@ public class UsageLog4j {
         float weight = 65.2f;
         byte size = 48;
         short mortgage = -31000;
-        long salary = 140000;
+        long salary = 140000L;
         char gender = 'M';
         boolean married = true;
         LOG.debug("User info: age {}, height {}, weight {}, "
