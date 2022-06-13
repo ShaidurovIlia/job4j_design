@@ -17,7 +17,6 @@ public class EchoServer {
                    if (str.contains("?msg=Exit")) {
                        out.write("Exit.".getBytes());
                        server.close();
-                       break;
                    } else if (str.contains("?msg=Hello")) {
                            out.write("Hallo.".getBytes());
                        } else {
