@@ -2,7 +2,7 @@
 <purebred dog = "true" age = "3" name = "Lord">
 <passport number = "1418999966"/>
 <colorses>
-<colors>"Black"</colors>
-<colors>"White"</colors>
+<colors>Black</colors>
+<colors>White</colors>
 <colorses>
 <dog>
