@@ -1,7 +1,14 @@
 package ru.job4j.serialization;
 
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement(name = "passport")
 public class Passport {
-    private final int number;
+    @XmlAttribute
+    private int number;
+
+    public Passport() { }
 
     public Passport(int number) {
         this.number = number;
