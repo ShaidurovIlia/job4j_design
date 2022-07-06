@@ -1,7 +1,5 @@
 package ru.job4j.serialization;
 
-import com.sun.xml.bind.api.JAXBRIContext;
-
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
@@ -20,7 +18,6 @@ public class Dog {
     private int age;
     @XmlAttribute
     private String name;
-    @XmlAttribute
     private Passport passport;
     @XmlElementWrapper
     private String[] colors;
