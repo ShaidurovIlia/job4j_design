@@ -1,5 +1,8 @@
 package ru.job4j.serialization;
 
+import org.json.JSONObject;
+import org.json.JSONPropertyIgnore;
+
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
@@ -18,6 +21,7 @@ public class Dog {
     private int age;
     @XmlAttribute
     private String name;
+
     private Passport passport;
     @XmlElementWrapper
     private String[] colors;
@@ -30,6 +34,27 @@ public class Dog {
         this.name = name;
         this.passport = passport;
         this.colors = colors;
+    }
+
+    public boolean isPurebred() {
+        return purebred;
+    }
+
+    public int getAge() {
+        return age;
+
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Passport getPassport() {
+        return passport;
+    }
+
+    public String[] getColors() {
+        return colors;
     }
 
     @Override
