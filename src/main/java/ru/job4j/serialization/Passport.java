@@ -22,6 +22,10 @@ public class Passport implements Serializable {
         this.number = number;
     }
 
+    public int getNumber() {
+        return number;
+    }
+
     public void setDog(Dog dog) {
         this.dog = dog;
     }

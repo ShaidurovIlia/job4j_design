@@ -1,8 +1,5 @@
 package ru.job4j.serialization;
 
-import org.json.JSONObject;
-import org.json.JSONPropertyIgnore;
-
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;

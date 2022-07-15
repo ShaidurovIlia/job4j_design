@@ -14,16 +14,16 @@ public class JsonDog {
 
         final String dogJson =
                 "{"
-                + "\"purebred\":true,"
-                + "\"age\":3,"
-                + "\"name\":Lord,"
-                + "\"passport\":"
-                + "{"
-                + "\"number\":\"1418999966\""
-                + "},"
-                + "\"colors\":"
-                + "[\"Black\",\"White\"]"
-                + "}";
+                        + "\"purebred\":true,"
+                        + "\"age\":3,"
+                        + "\"name\":Lord,"
+                        + "\"passport\":"
+                        + "{"
+                        + "\"number\":\"1418999966\""
+                        + "},"
+                        + "\"colors\":"
+                        + "[\"Black\",\"White\"]"
+                        + "}";
         final Dog dogj = gson.fromJson(dogJson, Dog.class);
         System.out.println(dogj);
         System.out.println();
@@ -35,7 +35,6 @@ public class JsonDog {
         jsonDog.put("passport", new JSONObject(dog.getPassport()));
         jsonDog.put("colors", new JSONArray(dog.getColors()));
         System.out.println(jsonDog);
-        System.out.println(new JSONObject(dog));
-
+        System.out.println(new JSONObject(dogj));
     }
 }
