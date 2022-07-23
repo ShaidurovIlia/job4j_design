@@ -1,10 +1,10 @@
-create table if type
+create table type
 (
 	id serial primary key,
 	name varchar(255)
 );
 
-create table if product
+create table product
 (
 	id serial primary key,
 	name varchar(255),
