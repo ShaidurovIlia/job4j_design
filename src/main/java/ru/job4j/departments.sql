@@ -48,8 +48,8 @@ from employees e
 left join departments d
 on e.department_id=d.id;
 
-select d.name as Отдел,
-e.name as Сотрудник
+select e.name as Сотрудник,
+d.name as Отдел
 from departments d
 right join employees e
 on e.department_id=d.id;
