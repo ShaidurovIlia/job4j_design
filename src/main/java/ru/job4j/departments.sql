@@ -42,15 +42,17 @@ left join departments d
 on e.department_id=d.id
 where d.id is not null;
 
-select * from employees e
+select e.name as Сотрудник,
+d.name as Отдел
+from employees e
 left join departments d
-on e.department_id=d.id
-where d.id is not null;
+on e.department_id=d.id;
 
-select * from employees e 
-right join departments d
-on e.department_id=d.id
-where d.id is not null;
+select d.name as Отдел,
+e.name as Сотрудник
+from departments d
+right join employees e
+on e.department_id=d.id;
 
 create table if not exists teens 
 (
