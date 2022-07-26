@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.StringJoiner;
-import java.util.stream.Collectors;
 
 public class Config {
 
@@ -18,36 +17,38 @@ public class Config {
     }
 
     public void load() {
-        try (BufferedReader reader = new BufferedReader(
-                new FileReader(this.path))) {
-            values.putAll(reader.lines()
-                    .filter(x -> !"".equals(x) && x.charAt(0) != '#')
-                    .peek(x -> {
-                        if (x.indexOf('=') == -1 || x.charAt(0) == '='
-                                || x.charAt(x.length() - 1) == '=') {
-                            throw new IllegalArgumentException();
-                        }
-                    })
-                    .collect(Collectors.toMap(k -> k.split("=")[0],
-                            v -> v.split("=")[1])));
+        try (BufferedReader read = new BufferedReader(new FileReader(this.path))) {
+            for (String line = read.readLine(); line != null; line = read.readLine()) {
+                if (!line.isBlank() && !line.startsWith("#")) {
+                    String[] s = line.split("=", 2);
+                    if (s.length < 2 || s[0].isBlank() || s[1].isBlank()) {
+                        throw new IllegalArgumentException("Строка не соответсвует шаблону");
+                    } else {
+                        values.put(s[0], s[1]);
+                    }
+                }
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     public String value(String key) {
-       return values.get(key);
+        return values.get(key);
     }
 
     @Override
     public String toString() {
         StringJoiner out = new StringJoiner(System.lineSeparator());
-        try (BufferedReader read = new BufferedReader(
-                new FileReader(this.path))) {
+        try (BufferedReader read = new BufferedReader(new FileReader(this.path))) {
             read.lines().forEach(out::add);
         } catch (IOException e) {
             e.printStackTrace();
         }
         return out.toString();
+    }
+
+    public static void main(String[] args) {
+        System.out.println(new Config("app.properties"));
     }
 }
