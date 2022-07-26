@@ -13,13 +13,13 @@ create table product
 	price float
 );
 
-insert into type (name) values 
+insert into type (name) values
 ('Молоко'), ('Сыр'),('Мороженое'), ('Колбасы'),
 ('Яйца'), ('Овощи'), ('Фрукты'), ('Натуральный сок');
 
-insert into product (name, type_id, expired_date, price) 
-values 
-('Веселый молочник', 1, date '2022-07-21', 99), 
+insert into product (name, type_id, expired_date, price)
+values
+('Веселый молочник', 1, date '2022-07-21', 99),
 ('Докторская', 4, date '2021-07-05', 430),
 ('Сыр Масдам', 2, date '2020-07-14', 600),
 ('Мороженое Экзо', 3, date '2022-06-22', 99),
@@ -30,12 +30,12 @@ values
 ('Яблоки', 7, date '2022-08-01', 250);
 
 select t.name as Тип, p.name Название
-from product p 
-join type t 
-on p.type_id=t.id 
+from product p
+join type t
+on p.type_id=t.id
 where t.name='Сыр';
 
-select * from product 
+select * from product
 where name like '%Мороженое%';
 
 select p.name as Название,
@@ -51,7 +51,7 @@ p.price as Цена
 from product p
 where price = (select max(price) from product);
 
-select t.name as Имя_типа, 
+select t.name as Имя_типа,
 count(p.type_id) as Количество
 from product p
 join type t
@@ -63,7 +63,7 @@ p.name as Название
 from product p
 join type t
 on p.type_id=t.id
-where t.name ='Сыр' 
+where t.name ='Сыр'
 OR t.name = 'Молоко';
 
 select t.name as Тип,
@@ -77,8 +77,6 @@ having count(t.name) < 10;
 select * from product
 join type t
 on product.type_id=t.id;
-
-
 
 
 
