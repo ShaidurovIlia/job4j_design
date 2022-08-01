@@ -1,5 +1,6 @@
 package ru.job4j.jdbc;
 
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.*;
@@ -15,16 +16,6 @@ public class TableEditor implements AutoCloseable {
     public TableEditor(Properties properties) {
         this.properties = properties;
         initConnection();
-    }
-
-    private static Properties readProperties() throws IOException {
-        Properties properties = new Properties();
-        try (InputStream in = TableEditor.class
-        .getClassLoader()
-        .getResourceAsStream("jdbc.properties")) {
-            properties.load(in);
-        }
-        return properties;
     }
 
     private void initConnection() {
@@ -102,24 +93,30 @@ public class TableEditor implements AutoCloseable {
         return buffer.toString();
     }
 
-        @Override
+    @Override
     public void close() throws Exception {
         if (connection != null) {
             connection.close();
         }
     }
 
-    public static void main(String[] args) throws Exception {
-        try (TableEditor table = new TableEditor(readProperties())) {
-            table.createTable("table_editor");
-            System.out.println(getTableScheme(table.connection, "table_editor"));
-            table.addColumn("table_editor", "student", "text");
-            System.out.println(getTableScheme(table.connection, "table_editor"));
-            table.dropColumn("table_editor", "student");
-            System.out.println(getTableScheme(table.connection, "table_editor"));
-            table.renameColumn("table_editor", "student", "studentJ4j");
-            System.out.println(getTableScheme(table.connection, "table_editor"));
-            table.dropTable("table_editor");
+    public static void main(String[] args) throws ClassNotFoundException {
+        Properties config = new Properties();
+        try (InputStream in = new FileInputStream("./src/main/resources/jdbc.properties")) {
+            config.load(in);
+            try (TableEditor table = new TableEditor(config)) {
+                table.createTable("table_editor");
+                System.out.println(getTableScheme(table.connection, "table_editor"));
+                table.addColumn("table_editor", "student", "text");
+                System.out.println(getTableScheme(table.connection, "table_editor"));
+                table.dropColumn("table_editor", "student");
+                System.out.println(getTableScheme(table.connection, "table_editor"));
+                table.renameColumn("table_editor", "student", "studentJ4j");
+                System.out.println(getTableScheme(table.connection, "table_editor"));
+                table.dropTable("table_editor");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }
