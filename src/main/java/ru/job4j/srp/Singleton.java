@@ -14,6 +14,7 @@ public class Singleton {
         return instance;
     }
 }
+
 /**
  * Singleton подразумевает,
  * что помимо своих основных обязанностей класс занимается
