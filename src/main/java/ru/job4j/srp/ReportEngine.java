@@ -1,6 +1,5 @@
 package ru.job4j.srp;
 
-
 import java.util.function.Predicate;
 
 public class ReportEngine implements Report {

@@ -1,7 +1,6 @@
 package ru.job4j.srp;
 
 import java.util.Comparator;
-
 import java.util.function.Predicate;
 
 public class ReportHR implements Report {
