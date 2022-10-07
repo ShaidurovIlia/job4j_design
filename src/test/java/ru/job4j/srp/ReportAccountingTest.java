@@ -7,7 +7,6 @@ import java.util.Calendar;
 import static org.assertj.core.api.Assertions.*;
 
 class ReportAccountingTest {
-
     @Test
     void whenAccountingGenerate() {
         MemStore store = new MemStore();
@@ -27,6 +26,5 @@ class ReportAccountingTest {
                 .append(worker.getSalary()).append(";")
                 .append(Utility.SEPARATOR);
         assertThat(report.generate(e -> true)).isEqualTo(expected.toString());
-
     }
 }
