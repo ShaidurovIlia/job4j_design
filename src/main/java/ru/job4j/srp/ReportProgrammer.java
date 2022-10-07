@@ -13,29 +13,28 @@ public class ReportProgrammer implements Report {
     @Override
     public String generate(Predicate<Employee> filter) {
         StringBuilder text = new StringBuilder();
-            text.append("<!DOCTYPE html>").append(Utility.SEPARATOR)
-                    .append("<html>").append(Utility.SEPARATOR)
-                    .append("<head>").append(Utility.SEPARATOR)
-                    .append("<title>Report employees</title>").append(Utility.SEPARATOR)
-                    .append("</head>").append(Utility.SEPARATOR)
-                    .append("<body>").append(Utility.SEPARATOR)
+        String ln = System.lineSeparator();
+            text.append("<!DOCTYPE html>").append(ln)
+                    .append("<html>").append(ln)
+                    .append("<head>").append(ln)
+                    .append("<title>Report employees</title>").append(ln)
+                    .append("</head>").append(ln)
+                    .append("<body>").append(ln)
                     .append("<th>Name</th><th>Hired</th><th>Fired</th><th>Salary</th>")
                     .append("</tr>")
-                    .append(Utility.SEPARATOR);
+                    .append(ln);
             for (Employee employee : store.findBy(filter)) {
-                text.append("<tr>").append(Utility.SEPARATOR)
-                        .append("<td>").append(employee.getName()).append(";").append("</td>")
-                        .append("<td>").append(Utility.DATE_FORMAT.format(employee.getHired()
-                                .getTime())).append("</td>")
-                        .append("<td>").append(Utility.DATE_FORMAT.format(employee.getFired()
-                                .getTime())).append("</td>")
-                        .append("<td>").append(employee.getSalary()).append("</td>")
-                        .append("</tr>")
-                        .append(Utility.SEPARATOR);
+                text.append("<tr>").append(ln)
+                        .append("<td>")
+                        .append(employee.getName()).append(";")
+                        .append(employee.getHired()).append(";")
+                        .append(employee.getFired()).append(";")
+                        .append(employee.getSalary()).append(";")
+                        .append("<tr>").append(ln);
             }
-        text.append("</table>").append(Utility.SEPARATOR)
-                .append("</body>").append(Utility.SEPARATOR)
-                .append("</html>").append(Utility.SEPARATOR);
+        text.append("</table>").append(ln)
+                .append("</body>").append(ln)
+                .append("</html>").append(ln);
         return text.toString();
     }
 }

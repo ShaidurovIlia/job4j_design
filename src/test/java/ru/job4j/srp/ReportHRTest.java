@@ -11,21 +11,20 @@ class ReportHRTest {
     @Test
     void whenHRGenerate() {
         MemStore store = new MemStore();
-        Calendar calendar = Calendar.getInstance();
-        Employee worker = new Employee("Julia", calendar, calendar, 3500);
-        Employee workerTwo = new Employee("Artur", calendar, calendar, 3000);
-        store.add(worker);
-        store.add(workerTwo);
-        Report report = new ReportHR(store, Comparator.comparing(Employee :: getSalary).reversed());
+        Calendar now = Calendar.getInstance();
+        store.add(new Employee("Artur", now, now, 1000));
+        store.add(new Employee("Julia", now, now, 5000));
+        store.add(new Employee("Ivan", now, now, 3000));
+        Report report = new ReportHR(store);
         StringBuilder expected = new StringBuilder()
-                .append("Name; Salary; ").append(Utility.SEPARATOR)
-                .append(Utility.SEPARATOR)
-                .append(worker.getName()).append(";")
-                .append(worker.getSalary()).append(";")
-                .append(Utility.SEPARATOR)
-                .append(workerTwo.getName()).append(";")
-                .append(workerTwo.getSalary()).append(";")
-                .append(Utility.SEPARATOR);
+                .append("Name; Salary;")
+                .append(System.lineSeparator())
+                .append("Julia").append(";").append("5000.0").append(";")
+                .append(System.lineSeparator())
+                .append("Ivan").append(";").append("3000.0").append(";")
+                .append(System.lineSeparator())
+                .append("Artur").append(";").append("1000.0").append(";")
+                .append(System.lineSeparator());
         assertThat(report.generate(e -> true)).isEqualTo(expected.toString());
     }
 }

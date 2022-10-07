@@ -4,29 +4,25 @@ import java.util.function.Predicate;
 
 public class ReportAccounting implements Report {
 
-    private double wags;
-    private String currency;
     private Store store;
+    private double rubleCourse;
 
-    public ReportAccounting(double wags, String currency, Store store) {
-        this.wags = wags;
-        this.currency = currency;
+    public ReportAccounting(Store store, double rubleCourse) {
         this.store = store;
+        this.rubleCourse = rubleCourse;
     }
 
     @Override
     public String generate(Predicate<Employee> filter) {
         StringBuilder text = new StringBuilder();
         text.append("Name; Hired; Fired; Salary;")
-                .append(Utility.SEPARATOR);
+                .append(System.lineSeparator());
         for (Employee employee : store.findBy(filter)) {
             text.append(employee.getName()).append(";")
-                    .append(Utility.DATE_FORMAT.format(employee
-                            .getHired().getTime())).append(";")
-                    .append(Utility.DATE_FORMAT.format(employee
-                            .getFired().getTime())).append(";")
-                    .append(employee.getSalary()).append(";")
-                    .append(Utility.SEPARATOR);
+                    .append(employee.getHired()).append(";")
+                    .append(employee.getFired()).append(";")
+                    .append(employee.getSalary() * rubleCourse).append("rub").append(";")
+                    .append(System.lineSeparator());
         }
         return text.toString();
     }

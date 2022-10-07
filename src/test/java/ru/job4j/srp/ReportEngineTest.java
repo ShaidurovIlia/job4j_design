@@ -18,8 +18,8 @@ public class ReportEngineTest {
                 .append("Name; Hired; Fired; Salary;")
                 .append(System.lineSeparator())
                 .append(worker.getName()).append(";")
-                .append(Utility.DATE_FORMAT.format(worker.getHired().getTime())).append(";")
-                .append(Utility.DATE_FORMAT.format(worker.getFired().getTime())).append(";")
+                .append(worker.getHired()).append(";")
+                .append(worker.getFired()).append(";")
                 .append(worker.getSalary()).append(";")
                 .append(System.lineSeparator());
         assertThat(engine.generate(em -> true)).isEqualTo(expect.toString());

@@ -10,21 +10,18 @@ class ReportAccountingTest {
     @Test
     void whenAccountingGenerate() {
         MemStore store = new MemStore();
-        Calendar calendar = Calendar.getInstance();
-        Employee worker = new Employee("Artur", calendar, calendar, 1000);
+        Calendar now = Calendar.getInstance();
+        Employee worker = new Employee("Artur", now, now, 1000);
         store.add(worker);
-        Report report = new ReportAccounting(2.1, "$", store);
+        Report report = new ReportAccounting(store, 31);
         StringBuilder expected = new StringBuilder()
                 .append("Name; Hired; Fired; Salary;")
-                .append(Utility.SEPARATOR)
+                .append(System.lineSeparator())
                 .append(worker.getName()).append(";")
-                .append(Utility.SEPARATOR)
                 .append(worker.getHired()).append(";")
-                .append(Utility.SEPARATOR)
                 .append(worker.getFired()).append(";")
-                .append(Utility.SEPARATOR)
-                .append(worker.getSalary()).append(";")
-                .append(Utility.SEPARATOR);
+                .append(worker.getSalary() * 31).append("rub").append(";")
+                .append(System.lineSeparator());
         assertThat(report.generate(e -> true)).isEqualTo(expected.toString());
     }
 }

@@ -9,31 +9,30 @@ class ReportProgrammerTest {
     @Test
     public void whenProgrammersGenerated() {
         MemStore store = new MemStore();
-        Calendar calendar = Calendar.getInstance();
-        Employee worker = new Employee("Ivan", calendar, calendar, 5000);
+        Calendar now = Calendar.getInstance();
+        String ln = System.lineSeparator();
+        Employee worker = new Employee("Ivan", now, now, 5000);
         store.add(worker);
         Report report = new ReportProgrammer(store);
         StringBuilder expect = new StringBuilder();
-        expect.append("<!DOCTYPE html>").append(Utility.SEPARATOR)
-                .append("<html>").append(Utility.SEPARATOR)
-                .append("<head>").append(Utility.SEPARATOR)
-                .append("<title>Report employees</title>").append(Utility.SEPARATOR)
-                .append("</head>").append(Utility.SEPARATOR)
-                .append("<body>").append(Utility.SEPARATOR)
+        expect.append("<!DOCTYPE html>").append(ln)
+                .append("<html>").append(ln)
+                .append("<head>").append(ln)
+                .append("<title>Report employees</title>").append(ln)
+                .append("</head>").append(ln)
+                .append("<body>").append(ln)
                 .append("<th>Name</th><th>Hired</th><th>Fired</th><th>Salary</th>")
-                .append("</tr>").append(Utility.SEPARATOR)
-                .append("<tr>").append(Utility.SEPARATOR)
-                .append("<td>").append(worker.getName()).append(";").append("</td>")
-                .append("<td>").append(Utility.DATE_FORMAT.
-                        format(worker.getHired().getTime())).append("</td>")
-                .append("<td>").append(Utility.DATE_FORMAT
-                        .format(worker.getFired().getTime())).append("</td>")
-                .append("<td>").append(worker.getSalary()).append("</td>")
-                .append("</tr>")
-                .append(Utility.SEPARATOR)
-                .append("</table>").append(Utility.SEPARATOR)
-                .append("</body>").append(Utility.SEPARATOR)
-                .append("</html>").append(Utility.SEPARATOR);
+                .append("</tr>").append(ln)
+                .append("<tr>").append(ln)
+                .append("<td>")
+                .append(worker.getName()).append(";")
+                .append(worker.getHired()).append(";")
+                .append(worker.getFired()).append(";")
+                .append(worker.getSalary()).append(";")
+                .append("<tr>").append(ln)
+                .append("</table>").append(ln)
+                .append("</body>").append(ln)
+                .append("</html>").append(ln);
         assertThat(report.generate(e -> true)).isEqualTo(expect.toString());
     }
 }
