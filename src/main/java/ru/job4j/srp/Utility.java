@@ -1,6 +1,5 @@
 package ru.job4j.srp;
 
-
 import java.text.SimpleDateFormat;
 
 public class Utility {
