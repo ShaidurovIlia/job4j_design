@@ -4,6 +4,8 @@ import org.junit.jupiter.api.Test;
 import java.util.Calendar;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static ru.job4j.srp.ReportEngine.DATE_FORMAT;
+
 class ReportProgrammerTest {
 
     @Test
@@ -21,13 +23,15 @@ class ReportProgrammerTest {
                 .append("<title>Report employees</title>").append(ln)
                 .append("</head>").append(ln)
                 .append("<body>").append(ln)
-                .append("<th>Name</th><th>Hired</th><th>Fired</th><th>Salary</th>")
+                .append("<th>Name;Hired;Fired;Salary</th>")
                 .append("</tr>").append(ln)
                 .append("<tr>").append(ln)
                 .append("<td>")
                 .append(worker.getName()).append(";")
-                .append(worker.getHired()).append(";")
-                .append(worker.getFired()).append(";")
+                .append(DATE_FORMAT.format(worker.getHired().getTime()))
+                .append(";")
+                .append(DATE_FORMAT.format(worker.getFired().getTime()))
+                .append(";")
                 .append(worker.getSalary()).append(";")
                 .append("<tr>").append(ln)
                 .append("</table>").append(ln)

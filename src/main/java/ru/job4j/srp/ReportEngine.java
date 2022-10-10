@@ -1,8 +1,12 @@
 package ru.job4j.srp;
 
+import java.text.SimpleDateFormat;
 import java.util.function.Predicate;
 
 public class ReportEngine implements Report {
+
+    public static final SimpleDateFormat DATE_FORMAT =
+            new SimpleDateFormat("dd:MM:yyyy HH:mm");
 
     private Store store;
 
@@ -17,8 +21,10 @@ public class ReportEngine implements Report {
                 .append(System.lineSeparator());
         for (Employee employee : store.findBy(filter)) {
             text.append(employee.getName()).append(";")
-                    .append(employee.getHired()).append(";")
-                    .append(employee.getFired()).append(";")
+                    .append(DATE_FORMAT.format(employee.getHired().getTime()))
+                    .append(";")
+                    .append(DATE_FORMAT.format(employee.getFired().getTime()))
+                    .append(";")
                     .append(employee.getSalary()).append(";")
                     .append(System.lineSeparator());
         }

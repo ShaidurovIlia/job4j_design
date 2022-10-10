@@ -3,6 +3,8 @@ package ru.job4j.srp;
 
 import java.util.function.Predicate;
 
+import static ru.job4j.srp.ReportEngine.DATE_FORMAT;
+
 public class ReportProgrammer implements Report {
     private Store store;
 
@@ -20,15 +22,17 @@ public class ReportProgrammer implements Report {
                     .append("<title>Report employees</title>").append(ln)
                     .append("</head>").append(ln)
                     .append("<body>").append(ln)
-                    .append("<th>Name</th><th>Hired</th><th>Fired</th><th>Salary</th>")
+                    .append("<th>Name;Hired;Fired;Salary</th>")
                     .append("</tr>")
                     .append(ln);
             for (Employee employee : store.findBy(filter)) {
                 text.append("<tr>").append(ln)
                         .append("<td>")
                         .append(employee.getName()).append(";")
-                        .append(employee.getHired()).append(";")
-                        .append(employee.getFired()).append(";")
+                        .append(DATE_FORMAT.format(employee.getHired().getTime()))
+                        .append(";")
+                        .append(DATE_FORMAT.format(employee.getFired().getTime())).
+                        append(";")
                         .append(employee.getSalary()).append(";")
                         .append("<tr>").append(ln);
             }
