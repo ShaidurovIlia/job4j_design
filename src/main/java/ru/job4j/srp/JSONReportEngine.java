@@ -10,17 +10,10 @@ public class JSONReportEngine implements Report {
     private Gson gsonReport;
     private GsonBuilder builder;
 
-    public JSONReportEngine(Store store, Gson gsonReport, GsonBuilder builder) {
-        this.store = store;
-        this.gsonReport = gsonReport;
-        this.builder = builder;
-    }
-
-    public JSONReportEngine() {
-    }
-
     public JSONReportEngine(Store store) {
         this.store = store;
+        builder = new GsonBuilder();
+        gsonReport = builder.create();
     }
 
     @Override
