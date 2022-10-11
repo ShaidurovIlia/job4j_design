@@ -2,6 +2,7 @@ package ru.job4j.srp;
 
 import org.junit.Test;
 
+import javax.xml.bind.JAXBException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
@@ -11,7 +12,7 @@ import static org.junit.Assert.*;
 class XmlReportEngineTest {
 
     @Test
-    void whenXmlGenerated() {
+    void whenXmlGenerated() throws JAXBException {
         MemStore store = new MemStore();
         Calendar now = Calendar.getInstance();
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
