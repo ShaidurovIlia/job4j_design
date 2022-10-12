@@ -2,24 +2,26 @@ package ru.job4j.tdd;
 
 import java.util.Comparator;
 import java.util.List;
-import java.util.function.Predicate;
+import java.util.function.BiPredicate;
 
 public class MaxMin {
     public <T> T max(List<T> value, Comparator<T> comparator) {
-        return cmp(value, obj -> obj <= 0, comparator);
+        BiPredicate<T, T> predicate = (obj1, obj2) -> comparator.compare(obj1, obj2) <= 0;
+        return cmp(value, predicate);
     }
 
     public <T> T min(List<T> value, Comparator<T> comparator) {
-        return cmp(value, obj -> obj > 0, comparator);
+        BiPredicate<T, T> predicate = (obj1, obj2) -> comparator.compare(obj1, obj2) > 0;
+        return cmp(value, predicate);
     }
 
-    public <T> T cmp(List<T> value, Predicate<Integer> predicate, Comparator<T> comparator) {
+    public <T> T cmp(List<T> value, BiPredicate<T, T> predicate) {
         if (value == null || value.isEmpty()) {
             throw new IllegalArgumentException("List is Empty");
         }
         T obj = value.get(0);
         for (int i = 1; i < value.size(); i++) {
-            if (predicate.test(comparator.compare(obj, value.get(i)))) {
+            if (predicate.test(obj, value.get(i))) {
                 obj = value.get(i);
             }
         }
