@@ -21,8 +21,9 @@ public class MaxMin {
         }
         T obj = value.get(0);
         for (int i = 1; i < value.size(); i++) {
-            if (predicate.test(obj, value.get(i))) {
-                obj = value.get(i);
+            T rsl = value.get(i);
+            if (predicate.test(obj, rsl)) {
+                obj = rsl;
             }
         }
         return obj;
