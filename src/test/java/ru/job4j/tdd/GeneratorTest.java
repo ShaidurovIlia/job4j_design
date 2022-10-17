@@ -9,9 +9,9 @@ import java.util.Map;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+@Disabled("The test is temporarily disabled")
 class GeneratorTest {
 
-    @Disabled
     @Test()
     public void whenCorrect() {
         String template = "template ${template}";
@@ -21,7 +21,6 @@ class GeneratorTest {
         assertThat(temp.produce(template, args)).isEqualTo("template test");
     }
 
-    @Disabled
     @Test()
     public void whenNotCorrect() {
         String template = "template ${template}";
@@ -32,7 +31,6 @@ class GeneratorTest {
         assertThrows(IllegalArgumentException.class, () -> temp.produce(template, args));
     }
 
-    @Disabled
     @Test
     public void whenIsEmpty() {
         String template = "template ${template}";
@@ -41,7 +39,6 @@ class GeneratorTest {
         assertThrows(IllegalArgumentException.class, () -> temp.produce(template, args));
     }
 
-    @Disabled
     @Test()
     public void whenNoKeysInMap() {
         String template = "template ${template} and test ${key}";
@@ -51,7 +48,6 @@ class GeneratorTest {
         assertThrows(IllegalArgumentException.class, () -> temp.produce(template, args));
     }
 
-    @Disabled
     @Test()
     public void whenNotKeysInTemplate() {
         String template = "template";
