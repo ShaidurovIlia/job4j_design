@@ -11,7 +11,7 @@ public class SimpleMenuPrinter implements MenuPrinter {
     }
 
     private String paragraphIndent(String number) {
-        int index = number.length() / 2 - 1;
+        int index = number.split("\\.").length - 1;
         return SEPARATOR.repeat(index) + number;
     }
 }
