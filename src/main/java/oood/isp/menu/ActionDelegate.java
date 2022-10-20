@@ -1,4 +1,4 @@
-package oood.isp.menu;
+package oood.isp.menu; 
 
 public interface ActionDelegate {
 

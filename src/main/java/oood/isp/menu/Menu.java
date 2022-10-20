@@ -3,6 +3,7 @@ package oood.isp.menu;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+
 import java.util.stream.Collectors;
 
 public interface Menu extends Iterable<Menu.MenuItemInfo> {

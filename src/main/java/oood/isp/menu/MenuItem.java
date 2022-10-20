@@ -1,5 +1,6 @@
 package oood.isp.menu;
 
+
 import java.util.List;
 
 public interface MenuItem {

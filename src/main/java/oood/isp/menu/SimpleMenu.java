@@ -22,7 +22,8 @@ public class SimpleMenu implements Menu {
             return false;
         }
 
-        parentItem.get().menuItem.getChildren().add(new SimpleMenuItem(childName, actionDelegate));
+        parentItem.get().menuItem.getChildren()
+                .add(new SimpleMenuItem(childName, actionDelegate));
         return true;
     }
 

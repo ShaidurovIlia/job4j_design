@@ -5,7 +5,8 @@ public class SimpleMenuPrinter implements MenuPrinter {
 
     @Override
     public void print(Menu menu) {
-        menu.forEach(item -> System.out.println(paragraphIndent(item.getNumber())
+        menu.forEach(item -> System.out.println(paragraphIndent(item
+                .getNumber())
                 + item.getName()));
     }
 

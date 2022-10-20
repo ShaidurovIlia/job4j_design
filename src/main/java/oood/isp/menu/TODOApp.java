@@ -5,7 +5,8 @@ import java.util.Scanner;
 public class TODOApp {
     public static final ActionDelegate STUB_ACTION = System.out::println;
 
-    public static final String MENU_ACTIONS = """
+    public static final String MENU_ACTIONS =
+            """
                     Введите команду:
                     1 - Добавить задачу
                     2 - Добавить подзадачу
